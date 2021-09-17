@@ -27,18 +27,7 @@ const products = [
 ]
 // Je déclare un panier vide
 var panier = []
-
-// Fonction pour ajouter au panier
-const addToCart = (id) => {
-    var prod = products.find((e) => e.id == id)
-    panier.push(prod)
-    document.getElementById('taille-panier').innerText = panier.length
-    console.log(panier)
-    // TODO: Injecter l'html du produit ajouté au MODAL
-        // 1- Récuperer la div tbody avec l'id "panier-products"
-        // 2- Ajouter à l'html de la div un <tr>
-}
-
+var productsDiv = document.getElementById('products')
 // On prépare une variable qui va contenir l'html de toutes les cards
 var htmlToInject = ""
 // On boucle sur le tableau, et pour chaque object, on ajoute l'html d'une card
@@ -59,8 +48,31 @@ for (var i = 0; i < products.length; i++) {
         </div>`
 }
 // Je récupére la div parents des cards
-var productsDiv = document.getElementById('products')
 // J'y inject l'html
 productsDiv.innerHTML = htmlToInject;
 
-// TODO: Créer la fonction Delete du panier
+
+
+// Créer la fonction Delete du panier
+const deleteFromPanier = (id) => {
+    panier = panier.filter((e) => e.id !== id)
+    document.getElementById('element-' + id).remove()
+}
+// Fonction pour ajouter au panier
+const addToCart = (id) => {
+    var prod = products.find((e) => e.id == id)
+    const { name, price } = prod
+    panier.push(prod)
+    document.getElementById('taille-panier').innerText = panier.length
+    // TODO: Injecter l'html du produit ajouté au MODAL
+    // 1- Récuperer la div tbody avec l'id "panier-products"
+    const panierProductsDiv = document.getElementById('panier-products')
+    // 2- Ajouter à l'html de la div un <tr>
+    panierProductsDiv.innerHTML += `<tr id="element-${id}">
+                                <th scope="row">${id}</th>
+                                <td>${name}</td>
+                                <td>${price}</td>
+                                <td><button onclick="deleteFromPanier(${id})" class="btn btn-danger">Delete</button></td>
+                            </tr>`
+}
+
