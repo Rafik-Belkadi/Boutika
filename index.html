@@ -17,6 +17,7 @@
     <div class="navbar">
         <div class="logo">Boutika</div>
         <div class="right-nav">
+            <h4 data-toggle="modal" data-target="#favoriteModal">Favoris</h4>
             <div class="panier">
                 <i data-toggle="modal" data-target="#cartModal" class="fas fa-shopping-cart">
                     <span id="taille-panier">0</span>
@@ -28,7 +29,6 @@
         </div>
     </div>
     <!-- Slides (Carousel) -->
-
     <div id="mainCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <!-- <div class="background-shadow"></div> -->
@@ -86,24 +86,53 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Produit</th>
+                                <th scope="col">Quantité</th>
                                 <th scope="col">Prix Unitaire</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody id="panier-products" >
+                        <tbody id="panier-products">
                             <!-- Insert with js -->
-                            
+
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <h3 id="total">Total: 0 DZD</h3>
+                    <div class="right">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="confirmer" type="button" class="btn btn-primary">Confirmer la commande</button>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog  modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Favoris</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="favorite-modal-body" class="modal-body">
+                    <!-- INJECTED WITH JS -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
